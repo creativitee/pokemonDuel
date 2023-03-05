@@ -1,9 +1,8 @@
-<b>{{pokemonArr.[0]}} vs. {{ pokemonArr.[1]}}</b>
-</br>
-
-{{!-- {{ effectiveMoves }} --}}
-{{!-- {{ moveSet }}
-{{ weaknessMap }} --}}
+<b>{{pokemonArr.[0]}} vs. {{ pokemonArr.[1]}}</b><br>
+<div>
+    <img src={{ spriteOne }}>
+    <img src={{ spriteTwo }}>
+</div>
 
 
 
@@ -13,7 +12,7 @@
             <th>Type</th>
             <th>MoveSet</th>
         </tr>
-        {{#each effectiveMoves}}
+        {{#each result.moveMap}}
         <tr>
             <td>{{@key}}</td>
             <td>{{this}}</td>
@@ -21,3 +20,5 @@
         {{/each}}
     </table>
 </div>
+
+<br><i># of Super Effective Moves: {{ result.count }}</i>
