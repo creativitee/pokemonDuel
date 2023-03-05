@@ -1,0 +1,23 @@
+<b>{{pokemonArr.[0]}} vs. {{ pokemonArr.[1]}}</b>
+</br>
+
+{{!-- {{ effectiveMoves }} --}}
+{{!-- {{ moveSet }}
+{{ weaknessMap }} --}}
+
+
+
+<div class="table">
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>MoveSet</th>
+        </tr>
+        {{#each effectiveMoves}}
+        <tr>
+            <td>{{@key}}</td>
+            <td>{{this}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
