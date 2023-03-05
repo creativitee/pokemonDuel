@@ -2,7 +2,7 @@
 const { response } = require('express');
 const express = require('express');
 const path = require('path');
-const {  getPokemonDuel, getWeaknesses, mapMovesToType, strengthCount } = require('./public/javascript/pokeFunctions');
+const {  getPokemonList, getWeaknesses, mapMovesToType, strengthCount } = require('./public/javascript/pokeFunctions');
 
 //app
 const app = express();
@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
 app.get('/pokeDuel', async (req, res) => {
   // const formArray = ['hawlucha', 'clefairy'];
   if (formInputs.length > 0){
-    const pokemonList = await getPokemonDuel(formInputs);
+    const pokemonList = await getPokemonList(formInputs);
     weaknessMap = await getWeaknesses(pokemonList[1]); //get the weaknesses of the second pokemon (in a multiplier map)
     moveSet = await mapMovesToType(pokemonList[0].name, weaknessMap); //get the super effective moveset from the first pokemon
   

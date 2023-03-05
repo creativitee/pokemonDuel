@@ -1,6 +1,6 @@
 // takes an array w/ two pokemon - sends backs 3 things (a weakness map, an array of moves, the count of strong moves)
-async function getPokemonDuel(pokemonArr) {
-    const array = [];
+async function getPokemonList(pokemonArr) {
+    const pokemonList = [];
 
     //iterate over each pokemon in the array
     for (const pokemonName of pokemonArr) {
@@ -11,9 +11,9 @@ async function getPokemonDuel(pokemonArr) {
             typesArray : pokemonData.types.map(typeSlot => typeSlot.type.name),
             sprite : pokemonData.sprites['front_default']
         };
-        array.push(pokemonObj);
+        pokemonList.push(pokemonObj);
     }
-    return array;
+    return pokemonList;
 }
 
 
@@ -93,9 +93,9 @@ async function mapMovesToType(pokemon, weaknessMap) {
 //result: takes the move, gets the typing, and adds it to an array that mapes types to moves
 async function mapTypeToMove(currentMove, moveSet, weaknessMap) {
     const moveData = await (await fetch(currentMove.move.url)).json();
-    //move is an attacking move
     const moveType = moveData.type.name;
-    // && weaknessMap[moveType + ''] < 2
+    
+    //move is an attacking move and super effective
     if (moveData.power && (weaknessMap.hasOwnProperty(moveType + '') && weaknessMap[moveType + ''] >= 2)) {
         //check if our mapper contains the move's type
         if (moveSet.hasOwnProperty(moveType + '')) {
@@ -111,7 +111,7 @@ async function mapTypeToMove(currentMove, moveSet, weaknessMap) {
 }
 
 module.exports = {
-    getPokemonDuel,
+    getPokemonList,
     getWeaknesses,
     mapMovesToType,
     strengthCount
